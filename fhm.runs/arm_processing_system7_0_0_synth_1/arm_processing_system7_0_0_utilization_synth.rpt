@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-| Date         : Wed Sep  7 16:44:01 2022
+| Date         : Tue Sep 13 11:30:22 2022
 | Host         : DESKTOP-KLPNQ97 running 64-bit major release  (build 9200)
 | Command      : report_utilization -file arm_processing_system7_0_0_utilization_synth.rpt -pb arm_processing_system7_0_0_utilization_synth.pb
 | Design       : arm_processing_system7_0_0
@@ -87,29 +87,29 @@ Table of Contents
 4. IO and GT Specific
 ---------------------
 
-+-----------------------------+------+-------+-----------+-------+
-|          Site Type          | Used | Fixed | Available | Util% |
-+-----------------------------+------+-------+-----------+-------+
-| Bonded IOB                  |    0 |     0 |       362 |  0.00 |
-| Bonded IPADs                |    0 |     0 |        50 |  0.00 |
-| Bonded OPADs                |    0 |     0 |        32 |  0.00 |
-| Bonded IOPADs               |   57 |     0 |       130 | 43.85 |
-| PHY_CONTROL                 |    0 |     0 |         8 |  0.00 |
-| PHASER_REF                  |    0 |     0 |         8 |  0.00 |
-| OUT_FIFO                    |    0 |     0 |        32 |  0.00 |
-| IN_FIFO                     |    0 |     0 |        32 |  0.00 |
-| IDELAYCTRL                  |    0 |     0 |         8 |  0.00 |
-| IBUFDS                      |    0 |     0 |       348 |  0.00 |
-| GTXE2_COMMON                |    0 |     0 |         4 |  0.00 |
-| GTXE2_CHANNEL               |    0 |     0 |        16 |  0.00 |
-| PHASER_OUT/PHASER_OUT_PHY   |    0 |     0 |        32 |  0.00 |
-| PHASER_IN/PHASER_IN_PHY     |    0 |     0 |        32 |  0.00 |
-| IDELAYE2/IDELAYE2_FINEDELAY |    0 |     0 |       400 |  0.00 |
-| ODELAYE2/ODELAYE2_FINEDELAY |    0 |     0 |       150 |  0.00 |
-| IBUFDS_GTE2                 |    0 |     0 |         8 |  0.00 |
-| ILOGIC                      |    0 |     0 |       362 |  0.00 |
-| OLOGIC                      |    0 |     0 |       362 |  0.00 |
-+-----------------------------+------+-------+-----------+-------+
++-----------------------------+------+-------+-----------+--------+
+|          Site Type          | Used | Fixed | Available |  Util% |
++-----------------------------+------+-------+-----------+--------+
+| Bonded IOB                  |    0 |     0 |       362 |   0.00 |
+| Bonded IPADs                |    0 |     0 |        50 |   0.00 |
+| Bonded OPADs                |    0 |     0 |        32 |   0.00 |
+| Bonded IOPADs               |  130 |     0 |       130 | 100.00 |
+| PHY_CONTROL                 |    0 |     0 |         8 |   0.00 |
+| PHASER_REF                  |    0 |     0 |         8 |   0.00 |
+| OUT_FIFO                    |    0 |     0 |        32 |   0.00 |
+| IN_FIFO                     |    0 |     0 |        32 |   0.00 |
+| IDELAYCTRL                  |    0 |     0 |         8 |   0.00 |
+| IBUFDS                      |    0 |     0 |       348 |   0.00 |
+| GTXE2_COMMON                |    0 |     0 |         4 |   0.00 |
+| GTXE2_CHANNEL               |    0 |     0 |        16 |   0.00 |
+| PHASER_OUT/PHASER_OUT_PHY   |    0 |     0 |        32 |   0.00 |
+| PHASER_IN/PHASER_IN_PHY     |    0 |     0 |        32 |   0.00 |
+| IDELAYE2/IDELAYE2_FINEDELAY |    0 |     0 |       400 |   0.00 |
+| ODELAYE2/ODELAYE2_FINEDELAY |    0 |     0 |       150 |   0.00 |
+| IBUFDS_GTE2                 |    0 |     0 |         8 |   0.00 |
+| ILOGIC                      |    0 |     0 |       362 |   0.00 |
+| OLOGIC                      |    0 |     0 |       362 |   0.00 |
++-----------------------------+------+-------+-----------+--------+
 
 
 5. Clocking
