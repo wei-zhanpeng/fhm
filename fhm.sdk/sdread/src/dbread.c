@@ -94,9 +94,11 @@ int main()
     		if(itemorutil==1){
     			item_end = j;j++;
     			transferandstore(item_begin,item_end,tidn,ITEM);
+    			item_begin = j;
     		}else{
     			util_end = j;j++;
     			transferandstore(util_begin,util_end,tidn,UTIL);
+    			util_begin = j;
     		}
     	}
     	else if(asciidata==0x3A)//:
@@ -125,6 +127,8 @@ int main()
     		j++;
     	}
     }
+    Xil_DCacheFlush();
+    xil_printf("ascii to data in ddr finish!");
 
     f_close(&fil);
     cleanup_platform();
@@ -137,7 +141,7 @@ static void transferandstore(int begin,int end,int tidn,int type){
 
 	if(type == 0){//TU
 		TU = asciitodata(begin,end);
-		data[0] =  data[0] | TU;
+		data[0] = TU;
 	}else if(type == 1){//ITEM
 		ITUT_num ++;
 		data[ITUT_num] = asciitodata(begin,end);
@@ -153,7 +157,7 @@ static void transferandstore(int begin,int end,int tidn,int type){
 		data[ITUT_num] = data[ITUT_num] | UTIL;
 		ITUT_num ++;
 	}else if(type == 4){//UTIL_LAST
-		data[0] = (tidn & (0xffff)) << 16 | data[0];
+		data[0] = ((tidn & (0xffff)) << 16) | data[0];
 		UTIL = asciitodata(begin,end);
 		data[ITUT_num] = data[ITUT_num] | UTIL;
 		//store in ddr
@@ -161,7 +165,6 @@ static void transferandstore(int begin,int end,int tidn,int type){
 			Xil_Out32(addr3_now+i*4,data[i]);
 		}
 		addr3_now = addr3_now + (itutinT+1)*4;
-		xil_printf("ascii to data in ddr finish!");
 		ITUT_num = 0;
 	}
 }
