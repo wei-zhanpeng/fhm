@@ -19,13 +19,17 @@ FATFS fs;
 
 //global var
 enum datatype;
-int tidn = 0xffff;
 int ITUT_num = 0;
-int data[100];
-int itutinT = 0;
 
+int itutinT = 0;
+int TID_now = 0;
+
+//***
+static int rd_len = 179510;//ascii number , include /t /r and space
+int tidn = 0xffff;
+int data[100];
+//***
 static char rd_data[2001]="";
-static int rd_len = 179508;
 static int addr1_now = DDR_ADDR1;
 static int addr2_now = DDR_ADDR1;
 static int addr3_now = DDR_ADDR2;
@@ -58,24 +62,27 @@ int main()
     //xil_printf("file size :%d\n",fil.fsize);
 
     //read all data with ascii
-    int i = 0;
+    int i;
     int times = 0;
     while(rd_total < rd_len){
+    	i=0;
     	times++;
      	f_lseek(&fil,rd_total);
      	f_read(&fil,rd_data,2000,&br);
-     	//xil_printf("%d : %d\n",times,br);
-     	//xil_printf("total_now : %d\n",rd_total);
+     	xil_printf("%d : %d\n",times,br);
+
      	rd_total = rd_total + br;
-     	while(i<2000){
+     	while(i<br){
      		if(rd_data[i]==0x0D || rd_data[i]==0x0A){
      			Xil_Out8(addr1_now+i,(char)0x2D);
      		}else Xil_Out8(addr1_now+i,rd_data[i]);
      		i++;
      	}
      	Xil_DCacheFlush();
+     	addr1_now = addr1_now + br;
     }
-    xil_printf("all data read finish!");
+    xil_printf("total_now : %d\naddr1_now : %x\n",rd_total,addr1_now);
+    xil_printf("all data read finish!\n");
 
     //data format
     int j=0;
@@ -118,16 +125,26 @@ int main()
     	else if(asciidata==0x2D)//-
     	{
     		util_end  = j;
-    		transferandstore(util_begin,util_end,tidn,UTIL_LAST);
-    		tidn = tidn - 1;
-    		item_begin = j+2;j = j+2;
-    		itemorutil = 1;
+    		if(TID_now == TID_NUM - 1) {//data end must have /t or /r
+    			transferandstore(util_begin,util_end,tidn,UTIL_LAST);
+    			xil_printf("data format finish!,TID_now : %d\n",TID_now+1);
+    			break;
+    		}else{
+    			transferandstore(util_begin,util_end,tidn,UTIL_LAST);
+    			tidn = tidn - 1;
+    			item_begin = j+2;j = j+2;
+    			itemorutil = 1;
+    			TID_now = TID_now + 1;//tid now
+    			//xil_printf("tid now : %d\n",TID_now);
+    		}
+
     	}
     	else {
     		j++;
     	}
     }
     Xil_DCacheFlush();
+    //xil_printf("addr3_now : %x\n",addr3_now);
     xil_printf("ascii to data in ddr finish!");
 
     f_close(&fil);
@@ -143,7 +160,7 @@ static void transferandstore(int begin,int end,int tidn,int type){
 		TU = asciitodata(begin,end);
 		data[0] = TU;
 	}else if(type == 1){//ITEM
-		ITUT_num ++;
+		ITUT_num ++;//the number of item or util
 		data[ITUT_num] = asciitodata(begin,end);
 		data[ITUT_num] = (data[ITUT_num] & (0xffff)) << 16;
 	}else if(type == 2){//ITEM_LAST
@@ -151,7 +168,7 @@ static void transferandstore(int begin,int end,int tidn,int type){
 		itutinT = ITUT_num ;
 		data[ITUT_num] = asciitodata(begin,end);
 		data[ITUT_num] = (data[ITUT_num] & (0xffff)) << 16;
-		ITUT_num = 1;
+		ITUT_num = 1;//arrive last item , reback to the first item localization
 	}else if(type == 3){//UTIL
 		UTIL = asciitodata(begin,end);
 		data[ITUT_num] = data[ITUT_num] | UTIL;
