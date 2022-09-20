@@ -3,26 +3,31 @@
    guistr: "# # String gsaved with Nlview 6.6.11  2017-06-12 bk=1.3860 VDI=40 GEI=35 GUI=JA:1.6
 #  -string -flagsOSRD
 preplace port FIXED_IO -pg 1 -y -120 -defaultsOSRD
-preplace inst smartconnect_0 -pg 1 -lvl 3 -y -100 -defaultsOSRD
-preplace inst axi_dma_0 -pg 1 -lvl 1 -y -100 -defaultsOSRD
-preplace inst xlconcat_0 -pg 1 -lvl 2 -y -50 -defaultsOSRD
-preplace inst ps7_0_axi_periph -pg 1 -lvl 4 -y -290 -defaultsOSRD
-preplace inst rst_ps7_0_100M -pg 1 -lvl 3 -y -290 -defaultsOSRD
-preplace inst processing_system7_0 -pg 1 -lvl 2 -y -360 -defaultsOSRD
-preplace netloc processing_system7_0_M_AXI_GP0 1 2 2 1020J -200 1410
-preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 0 4 -110J -460 NJ -460 NJ -460 1390J
-preplace netloc processing_system7_0_FCLK_RESET0_N 1 2 1 N
-preplace netloc smartconnect_0_M00_AXI 1 1 3 510 -480 NJ -480 1370
-preplace netloc axi_dma_0_s2mm_introut 1 1 1 N
-preplace netloc axi_dma_0_M_AXI_MM2S 1 1 2 NJ -160 1000
-preplace netloc xlconcat_0_dout 1 1 2 520 -250 980
-preplace netloc processing_system7_0_FIXED_IO 1 2 3 980 -410 N -410 1680
-preplace netloc axi_dma_0_mm2s_introut 1 1 1 N
-preplace netloc axi_dma_0_M_AXI_S2MM 1 1 2 NJ -140 990
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 4 -90 -260 510 -260 1010 -390 1400
-preplace netloc ps7_0_axi_periph_M00_AXI 1 0 5 -100J -490 NJ -490 NJ -490 N -490 1670
-preplace netloc rst_ps7_0_100M_interconnect_aresetn 1 2 2 1030 -380 1380
-levelinfo -pg 1 -130 340 750 1200 1540 1700 -top -560 -bot 180
+preplace inst smartconnect_0 -pg 1 -lvl 4 -y -100 -defaultsOSRD
+preplace inst axi_dma_0 -pg 1 -lvl 2 -y -100 -defaultsOSRD
+preplace inst twutops_0 -pg 1 -lvl 1 -y -130 -defaultsOSRD
+preplace inst xlconcat_0 -pg 1 -lvl 3 -y 100 -defaultsOSRD
+preplace inst axi_read_item_and_tid_0 -pg 1 -lvl 3 -y -20 -defaultsOSRD
+preplace inst system_ila_0 -pg 1 -lvl 6 -y -30 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 5 -y -290 -defaultsOSRD
+preplace inst rst_ps7_0_100M -pg 1 -lvl 4 -y -290 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 3 -y -360 -defaultsOSRD
+preplace netloc processing_system7_0_M_AXI_GP0 1 3 2 1200J -380 1610
+preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 0 6 20 -50 310J 10 710J 170 1230J 10 1610J 10 N
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 3 1 N
+preplace netloc smartconnect_0_M00_AXI 1 2 3 730 160 NJ 160 1590
+preplace netloc axi_dma_0_s2mm_introut 1 2 1 690
+preplace netloc twutops_0_M00_AXIS 1 1 1 N
+preplace netloc axi_dma_0_M_AXI_MM2S 1 2 4 NJ -160 1230 -180 1580 -160 1910
+preplace netloc xlconcat_0_dout 1 2 2 740 -250 1200
+preplace netloc processing_system7_0_FIXED_IO 1 3 4 1200 -420 N -420 N -420 2110
+preplace netloc axi_dma_0_mm2s_introut 1 2 1 700
+preplace netloc axi_dma_0_M_AXI_S2MM 1 2 2 NJ -140 1210
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 6 20 -190 300 -220 710 -260 1220 -400 1620 -410 1920
+preplace netloc axi_dma_0_M_AXIS_MM2S 1 2 4 720 -200 N -200 1590 -150 1900
+preplace netloc ps7_0_axi_periph_M00_AXI 1 1 5 310J -210 NJ -210 1230J -190 1600 -170 1930
+preplace netloc rst_ps7_0_100M_interconnect_aresetn 1 3 2 1240 -390 1580
+levelinfo -pg 1 0 160 500 970 1410 1750 2020 2130 -top -630 -bot 180
 ",
 }
 {

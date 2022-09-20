@@ -70,9 +70,13 @@ set rc [catch {
   set_param project.singleFileAddWarning.threshold 0
   set_property webtalk.parent_dir D:/workspace/vivado/fhm/fhm.cache/wt [current_project]
   set_property parent.project_path D:/workspace/vivado/fhm/fhm.xpr [current_project]
+  set_property ip_repo_paths {
+  D:/workspace/vivado/ip_repo/twutops_1.0
+  D:/workspace/vivado/ip_repo/axi_read_item_and_tid_1.0
+} [current_project]
   set_property ip_output_repo D:/workspace/vivado/fhm/fhm.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
-  set_property XPM_LIBRARIES {XPM_FIFO XPM_MEMORY} [current_project]
+  set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
   add_files -quiet D:/workspace/vivado/fhm/fhm.runs/synth_1/arm_wrapper.dcp
   set_msg_config -source 4 -id {BD 41-1661} -limit 0
   set_param project.isImplRun true
@@ -158,7 +162,7 @@ start_step write_bitstream
 set ACTIVE_STEP write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
-  set_property XPM_LIBRARIES {XPM_FIFO XPM_MEMORY} [current_project]
+  set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
   catch { write_mem_info -force arm_wrapper.mmi }
   write_bitstream -force arm_wrapper.bit 
   catch { write_sysdef -hwdef arm_wrapper.hwdef -bitfile arm_wrapper.bit -meminfo arm_wrapper.mmi -file arm_wrapper.sysdef }

@@ -9,4 +9,31 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==arm || ORIG_REF
 # IP: bd/arm/ip/arm_processing_system7_0_0/arm_processing_system7_0_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==arm_processing_system7_0_0 || ORIG_REF_NAME==arm_processing_system7_0_0} -quiet] -quiet
 
+# IP: bd/arm/ip/arm_axi_dma_0_0/arm_axi_dma_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==arm_axi_dma_0_0 || ORIG_REF_NAME==arm_axi_dma_0_0} -quiet] -quiet
+
+# IP: bd/arm/ip/arm_ps7_0_axi_periph_0/arm_ps7_0_axi_periph_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==arm_ps7_0_axi_periph_0 || ORIG_REF_NAME==arm_ps7_0_axi_periph_0} -quiet] -quiet
+
+# IP: bd/arm/ip/arm_rst_ps7_0_100M_0/arm_rst_ps7_0_100M_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==arm_rst_ps7_0_100M_0 || ORIG_REF_NAME==arm_rst_ps7_0_100M_0} -quiet] -quiet
+
+# IP: bd/arm/ip/arm_xlconcat_0_0/arm_xlconcat_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==arm_xlconcat_0_0 || ORIG_REF_NAME==arm_xlconcat_0_0} -quiet] -quiet
+
+# IP: bd/arm/ip/arm_smartconnect_0_0/arm_smartconnect_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==arm_smartconnect_0_0 || ORIG_REF_NAME==arm_smartconnect_0_0} -quiet] -quiet
+
+# IP: bd/arm/ip/arm_axi_read_item_and_tid_0_0/arm_axi_read_item_and_tid_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==arm_axi_read_item_and_tid_0_0 || ORIG_REF_NAME==arm_axi_read_item_and_tid_0_0} -quiet] -quiet
+
+# IP: bd/arm/ip/arm_twutops_0_0/arm_twutops_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==arm_twutops_0_0 || ORIG_REF_NAME==arm_twutops_0_0} -quiet] -quiet
+
+# IP: bd/arm/ip/arm_system_ila_0_0/arm_system_ila_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==arm_system_ila_0_0 || ORIG_REF_NAME==arm_system_ila_0_0} -quiet] -quiet
+
+# IP: bd/arm/ip/arm_auto_pc_0/arm_auto_pc_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==arm_auto_pc_0 || ORIG_REF_NAME==arm_auto_pc_0} -quiet] -quiet
+
 # XDC: bd/arm/arm_ooc.xdc

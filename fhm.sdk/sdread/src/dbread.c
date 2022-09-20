@@ -1,13 +1,3 @@
-#include <stdio.h>
-#include "platform.h"
-#include "xil_printf.h"
-#include "xparameters.h"
-#include "string.h"
-#include "xil_io.h"
-#include "xil_cache.h"
-#include "ff.h"
-#include "xstatus.h"
-#include <math.h>
 #include "dbread.h"
 
 #define FILE_NAME "fhm.txt"
@@ -22,11 +12,14 @@ enum datatype;
 int ITUT_num = 0;
 int itutinT = 0;
 int TID_now = 0;
-//***
+int Status;
+int Index;
+//fhm
 int tidn = 0xffff;
 int data[100];
+int rd_total = 0;
 static int rd_len = 179510;//ascii number , include /t /r and space
-//***
+//addr
 static char rd_data[2001]="";
 static int addr1_now = DDR_ADDR1;
 static int addr2_now = DDR_ADDR1;
@@ -34,31 +27,108 @@ static int addr3_now = DDR_ADDR2;
 
 static void transferandstore();
 static int asciitodata();
+static void read_from_sd();
+static void data_format();
 
 int main()
 {
 	FIL fil;//文件对象
-	UINT br ;//文件读写字节计数
-	int rd_total = 0;
 	FRESULT rc;
 	TCHAR *path = "0:/";
 
     init_platform();
-
+    /////////////////////////////file read
     //逻辑驱动工作区注册
     rc = f_mount(&fs,path,0);
     if(rc){
     	xil_printf("ERROR: f_mount returned %d\r\n",rc);
     }
-
     rc = f_open(&fil,FILE_NAME, FA_READ);
     if(rc){
     	xil_printf("ERROR: f_open returned %d\r\n",rc);
     }
-
     //xil_printf("file ptr :%d\n",fil.fptr);
     //xil_printf("file size :%d\n",fil.fsize);
+    read_from_sd(fil);
+    data_format();
+    f_close(&fil);
+    /////////////////////////////file read end
 
+    ////////////////////////////DMA
+	u8 *TxBufferPtr;
+	u8 *RxBufferPtr;
+	u8 Value;
+	TxBufferPtr = (u8 *)TX_BUFFER_BASE ;
+	RxBufferPtr = (u8 *)RX_BUFFER_BASE;
+	/* Initialize flags before start transfer test  */
+	TxDone = 0;
+	TxDone_one = 0;
+	RxDone = 0;
+	Error = 0;
+	//
+	Config = XAxiDma_LookupConfig(DMA_DEV_ID);
+	if (!Config) {
+		xil_printf("No config found for %d\r\n", DMA_DEV_ID);
+		return XST_FAILURE;
+	}
+	/* Initialize DMA engine */
+	Status = XAxiDma_CfgInitialize(&AxiDma, Config);
+	if (Status != XST_SUCCESS) {
+		xil_printf("Initialization failed %d\r\n", Status);
+		return XST_FAILURE;
+	}
+	if(XAxiDma_HasSg(&AxiDma)){
+		xil_printf("Device configured as SG mode \r\n");
+		return XST_FAILURE;
+	}
+
+	/////////////////////////////DMA end
+
+    /////////////////////////////interupt
+	/* Set up Interrupt system  */
+	Status = SetupIntrSystem(&Intc, &AxiDma, TX_INTR_ID, RX_INTR_ID);
+	if (Status != XST_SUCCESS) {
+		xil_printf("Failed intr setup\r\n");
+		return XST_FAILURE;
+	}
+	/* Disable all interrupts before setup */
+	XAxiDma_IntrDisable(&AxiDma, XAXIDMA_IRQ_ALL_MASK,XAXIDMA_DMA_TO_DEVICE);
+	XAxiDma_IntrDisable(&AxiDma, XAXIDMA_IRQ_ALL_MASK,XAXIDMA_DEVICE_TO_DMA);
+	/* Enable all interrupts */
+	XAxiDma_IntrEnable(&AxiDma, XAXIDMA_IRQ_ALL_MASK,XAXIDMA_DMA_TO_DEVICE);
+	XAxiDma_IntrEnable(&AxiDma, XAXIDMA_IRQ_ALL_MASK,XAXIDMA_DEVICE_TO_DMA);
+
+    ////////////////////////////interupt end
+
+	///////////////////////////data transfer
+	for(Index = 0; Index < SEND_TIMES; Index ++) {
+
+		Status = XAxiDma_SimpleTransfer(&AxiDma,(UINTPTR) TxBufferPtr,MAX_PER_TRANSFER, XAXIDMA_DMA_TO_DEVICE);
+		transfer_times++;
+		if (Status != XST_SUCCESS) {
+			return XST_FAILURE;
+		}
+		while (!TxDone_one && !Error && !RxDone) {
+				/* NOP */
+		}
+		if (Error) {
+			xil_printf("Failed test transmit%s done, "
+			"receive%s done\r\n", TxDone? "":" not",
+							RxDone? "":" not");
+		}
+		if (TxDone) {
+			xil_printf("transfer done\n");
+		}
+	}
+	//////////////////////////end
+
+	DisableIntrSystem(&Intc, TX_INTR_ID, RX_INTR_ID);
+
+    cleanup_platform();
+    return 0;
+}
+static void read_from_sd(FIL fil){
+	UINT br ;//文件读写字节计数
     //read all data with ascii
     int i;
     int times = 0;
@@ -67,7 +137,7 @@ int main()
     	times++;
      	f_lseek(&fil,rd_total);
      	f_read(&fil,rd_data,2000,&br);
-     	xil_printf("%d : %d\n",times,br);
+     	//xil_printf("%d : %d\n",times,br);
 
      	rd_total = rd_total + br;
      	while(i<br){
@@ -82,72 +152,71 @@ int main()
     xil_printf("total_now : %d\naddr1_now : %x\n",rd_total,addr1_now);
     xil_printf("all data read finish!\n");
 
-    //data format
-    int j=0;
-    int tu_begin,tu_end;
-    int item_begin,item_end;
-    int util_begin,util_end;
-    int maostart=1;
-    int itemorutil=1;
-    //int addr2=DDR_ADDR2;
-    int asciidata;
-    while(j<rd_len){
-    	asciidata = Xil_In8(addr2_now+j);
-    	if(j==0) item_begin = j;
-    	if(asciidata==0x20)//space
-    	{
-    		if(itemorutil==1){
-    			item_end = j;j++;
-    			transferandstore(item_begin,item_end,tidn,ITEM);
-    			item_begin = j;
-    		}else{
-    			util_end = j;j++;
-    			transferandstore(util_begin,util_end,tidn,UTIL);
-    			util_begin = j;
-    		}
-    	}
-    	else if(asciidata==0x3A)//:
-    	{
-    		if(maostart==1) {
-    			item_end = j;
-    			transferandstore(item_begin,item_end,tidn,ITEM_LAST);
-    			tu_begin = j+1;j++; maostart = 0;
-    		}else {
-    			tu_end = j;j++;
-    			transferandstore(tu_begin,tu_end,tidn,TU);
-    			util_begin = j;
-    			maostart = 1;
-    			itemorutil = 0;
-    		}
-    	}
-    	else if(asciidata==0x2D)//-
-    	{
-    		util_end  = j;
-    		if(TID_now == TID_NUM - 1) {//data end must have /t or /r
-    			transferandstore(util_begin,util_end,tidn,UTIL_LAST);
-    			xil_printf("data format finish!,TID_now : %d\n",TID_now+1);
-    			break;
-    		}else{
-    			transferandstore(util_begin,util_end,tidn,UTIL_LAST);
-    			tidn = tidn - 1;
-    			item_begin = j+2;j = j+2;
-    			itemorutil = 1;
-    			TID_now = TID_now + 1;//tid now
-    			//xil_printf("tid now : %d\n",TID_now);
-    		}
+}
 
-    	}
-    	else {
-    		j++;
-    	}
-    }
-    Xil_DCacheFlush();
-    //xil_printf("addr3_now : %x\n",addr3_now);
-    xil_printf("ascii to data in ddr finish!");
+static void data_format(){
+	//data format
+	    int j=0;
+	    int tu_begin,tu_end;
+	    int item_begin,item_end;
+	    int util_begin,util_end;
+	    int maostart=1;
+	    int itemorutil=1;
+	    //int addr2=DDR_ADDR2;
+	    int asciidata;
+	    while(j<rd_len){
+	    	asciidata = Xil_In8(addr2_now+j);
+	    	if(j==0) item_begin = j;
+	    	if(asciidata==0x20)//space
+	    	{
+	    		if(itemorutil==1){
+	    			item_end = j;j++;
+	    			transferandstore(item_begin,item_end,tidn,ITEM);
+	    			item_begin = j;
+	    		}else{
+	    			util_end = j;j++;
+	    			transferandstore(util_begin,util_end,tidn,UTIL);
+	    			util_begin = j;
+	    		}
+	    	}
+	    	else if(asciidata==0x3A)//:
+	    	{
+	    		if(maostart==1) {
+	    			item_end = j;
+	    			transferandstore(item_begin,item_end,tidn,ITEM_LAST);
+	    			tu_begin = j+1;j++; maostart = 0;
+	    		}else {
+	    			tu_end = j;j++;
+	    			transferandstore(tu_begin,tu_end,tidn,TU);
+	    			util_begin = j;
+	    			maostart = 1;
+	    			itemorutil = 0;
+	    		}
+	    	}
+	    	else if(asciidata==0x2D)//-
+	    	{
+	    		util_end  = j;
+	    		if(TID_now == TID_NUM - 1) {//data end must have /t or /r
+	    			transferandstore(util_begin,util_end,tidn,UTIL_LAST);
+	    			xil_printf("data format finish!,TID_now : %d\n",TID_now+1);
+	    			break;
+	    		}else{
+	    			transferandstore(util_begin,util_end,tidn,UTIL_LAST);
+	    			tidn = tidn - 1;
+	    			item_begin = j+2;j = j+2;
+	    			itemorutil = 1;
+	    			TID_now = TID_now + 1;//tid now
+	    			//xil_printf("tid now : %d\n",TID_now);
+	    		}
 
-    f_close(&fil);
-    cleanup_platform();
-    return 0;
+	    	}
+	    	else {
+	    		j++;
+	    	}
+	    }
+	    Xil_DCacheFlush();
+	    //xil_printf("addr3_now : %x\n",addr3_now);
+	    xil_printf("ascii to data in ddr finish!");
 }
 
 static void transferandstore(int begin,int end,int tidn,int type){

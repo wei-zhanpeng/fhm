@@ -26,9 +26,13 @@ set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir D:/workspace/vivado/fhm/fhm.cache/wt [current_project]
 set_property parent.project_path D:/workspace/vivado/fhm/fhm.xpr [current_project]
-set_property XPM_LIBRARIES {XPM_FIFO XPM_MEMORY} [current_project]
+set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
+set_property ip_repo_paths {
+  d:/workspace/vivado/ip_repo/twutops_1.0
+  d:/workspace/vivado/ip_repo/axi_read_item_and_tid_1.0
+} [current_project]
 set_property ip_output_repo d:/workspace/vivado/fhm/fhm.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 read_ip -quiet D:/workspace/vivado/fhm/fhm.srcs/sources_1/bd/arm/ip/arm_processing_system7_0_0/arm_processing_system7_0_0.xci
