@@ -20,14 +20,12 @@ FATFS fs;
 //global var
 enum datatype;
 int ITUT_num = 0;
-
 int itutinT = 0;
 int TID_now = 0;
-
 //***
-static int rd_len = 179510;//ascii number , include /t /r and space
 int tidn = 0xffff;
 int data[100];
+static int rd_len = 179510;//ascii number , include /t /r and space
 //***
 static char rd_data[2001]="";
 static int addr1_now = DDR_ADDR1;
