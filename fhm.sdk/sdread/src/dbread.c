@@ -14,6 +14,7 @@ int itutinT = 0;
 int TID_now = 0;
 int Status;
 int Index;
+int transfer_times;
 //fhm
 int tidn = 0xffff;
 int data[100];
@@ -53,18 +54,16 @@ int main()
     data_format();
     f_close(&fil);
     /////////////////////////////file read end
-
-    ////////////////////////////DMA
-	u8 *TxBufferPtr;
-	u8 *RxBufferPtr;
-	u8 Value;
-	TxBufferPtr = (u8 *)TX_BUFFER_BASE ;
-	RxBufferPtr = (u8 *)RX_BUFFER_BASE;
-	/* Initialize flags before start transfer test  */
+    /* Initialize flags before start transfer test  */
 	TxDone = 0;
 	TxDone_one = 0;
 	RxDone = 0;
 	Error = 0;
+	transfer_times = 0;
+    ////////////////////////////DMA
+	u8 *TxBufferPtr;
+	TxBufferPtr = (u8 *)TX_BUFFER_BASE ;
+	//RxBufferPtr = (u8 *)RX_BUFFER_BASE;
 	//
 	Config = XAxiDma_LookupConfig(DMA_DEV_ID);
 	if (!Config) {
@@ -101,11 +100,14 @@ int main()
     ////////////////////////////interupt end
 
 	///////////////////////////data transfer
+	Xil_DCacheDisable();
+	u8 *current_ptr = TxBufferPtr;
 	for(Index = 0; Index < SEND_TIMES; Index ++) {
-
-		Status = XAxiDma_SimpleTransfer(&AxiDma,(UINTPTR) TxBufferPtr,MAX_PER_TRANSFER, XAXIDMA_DMA_TO_DEVICE);
+		current_ptr = TxBufferPtr + Index*8984;
+		Status = XAxiDma_SimpleTransfer(&AxiDma,(UINTPTR) current_ptr,MAX_PER_TRANSFER, XAXIDMA_DMA_TO_DEVICE);
 		transfer_times++;
 		if (Status != XST_SUCCESS) {
+			xil_printf("\nsimpler transfer error :transfer times is %d, error code : %d\n",transfer_times,Status);
 			return XST_FAILURE;
 		}
 		while (!TxDone_one && !Error && !RxDone) {
@@ -115,6 +117,10 @@ int main()
 			xil_printf("Failed test transmit%s done, "
 			"receive%s done\r\n", TxDone? "":" not",
 							RxDone? "":" not");
+		}
+		if (TxDone_one) {
+				xil_printf("Index%d : ",Index);
+				xil_printf("transfer once success!!!\n");
 		}
 		if (TxDone) {
 			xil_printf("transfer done\n");
@@ -149,7 +155,7 @@ static void read_from_sd(FIL fil){
      	Xil_DCacheFlush();
      	addr1_now = addr1_now + br;
     }
-    xil_printf("total_now : %d\naddr1_now : %x\n",rd_total,addr1_now);
+    //xil_printf("total_now : %d\naddr1_now : %x\n",rd_total,addr1_now);
     xil_printf("all data read finish!\n");
 
 }

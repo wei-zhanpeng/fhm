@@ -27,11 +27,8 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==arm_smartconnec
 # IP: bd/arm/ip/arm_axi_read_item_and_tid_0_0/arm_axi_read_item_and_tid_0_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==arm_axi_read_item_and_tid_0_0 || ORIG_REF_NAME==arm_axi_read_item_and_tid_0_0} -quiet] -quiet
 
-# IP: bd/arm/ip/arm_twutops_0_0/arm_twutops_0_0.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==arm_twutops_0_0 || ORIG_REF_NAME==arm_twutops_0_0} -quiet] -quiet
-
-# IP: bd/arm/ip/arm_system_ila_0_0/arm_system_ila_0_0.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==arm_system_ila_0_0 || ORIG_REF_NAME==arm_system_ila_0_0} -quiet] -quiet
+# IP: bd/arm/ip/arm_myip_0_0/arm_myip_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==arm_myip_0_0 || ORIG_REF_NAME==arm_myip_0_0} -quiet] -quiet
 
 # IP: bd/arm/ip/arm_auto_pc_0/arm_auto_pc_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==arm_auto_pc_0 || ORIG_REF_NAME==arm_auto_pc_0} -quiet] -quiet

@@ -16,6 +16,7 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
+set_msg_config -id {HDL-1065} -limit 10000
 create_project -in_memory -part xc7z100ffg900-2
 
 set_param project.singleFileAddWarning.threshold 0
@@ -28,6 +29,7 @@ set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property ip_repo_paths {
+  d:/workspace/vivado/ip_repo/myip_1.0
   d:/workspace/vivado/ip_repo/twutops_1.0
   d:/workspace/vivado/ip_repo/axi_read_item_and_tid_1.0
 } [current_project]
@@ -63,12 +65,6 @@ set_property used_in_implementation false [get_files -all d:/workspace/vivado/fh
 set_property used_in_implementation false [get_files -all d:/workspace/vivado/fhm/fhm.srcs/sources_1/bd/arm/ip/arm_smartconnect_0_0/bd_0/ip/ip_1/bd_6eb4_psr_aclk_0_board.xdc]
 set_property used_in_implementation false [get_files -all d:/workspace/vivado/fhm/fhm.srcs/sources_1/bd/arm/ip/arm_smartconnect_0_0/bd_0/ip/ip_1/bd_6eb4_psr_aclk_0.xdc]
 set_property used_in_implementation false [get_files -all d:/workspace/vivado/fhm/fhm.srcs/sources_1/bd/arm/ip/arm_smartconnect_0_0/ooc.xdc]
-set_property used_in_synthesis false [get_files -all d:/workspace/vivado/fhm/fhm.srcs/sources_1/bd/arm/ip/arm_system_ila_0_0/bd_0/ip/ip_0/ila_v6_2/constraints/ila_impl.xdc]
-set_property used_in_implementation false [get_files -all d:/workspace/vivado/fhm/fhm.srcs/sources_1/bd/arm/ip/arm_system_ila_0_0/bd_0/ip/ip_0/ila_v6_2/constraints/ila_impl.xdc]
-set_property used_in_implementation false [get_files -all d:/workspace/vivado/fhm/fhm.srcs/sources_1/bd/arm/ip/arm_system_ila_0_0/bd_0/ip/ip_0/ila_v6_2/constraints/ila.xdc]
-set_property used_in_implementation false [get_files -all d:/workspace/vivado/fhm/fhm.srcs/sources_1/bd/arm/ip/arm_system_ila_0_0/bd_0/ip/ip_0/bd_01d2_ila_lib_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/workspace/vivado/fhm/fhm.srcs/sources_1/bd/arm/ip/arm_system_ila_0_0/bd_0/bd_01d2_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/workspace/vivado/fhm/fhm.srcs/sources_1/bd/arm/ip/arm_system_ila_0_0/arm_system_ila_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all d:/workspace/vivado/fhm/fhm.srcs/sources_1/bd/arm/ip/arm_auto_pc_0/arm_auto_pc_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all D:/workspace/vivado/fhm/fhm.srcs/sources_1/bd/arm/arm_ooc.xdc]
 

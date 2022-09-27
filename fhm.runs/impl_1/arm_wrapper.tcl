@@ -60,6 +60,7 @@ proc step_failed { step } {
   close $ch
 }
 
+set_msg_config -id {HDL-1065} -limit 10000
 
 start_step init_design
 set ACTIVE_STEP init_design
@@ -71,6 +72,7 @@ set rc [catch {
   set_property webtalk.parent_dir D:/workspace/vivado/fhm/fhm.cache/wt [current_project]
   set_property parent.project_path D:/workspace/vivado/fhm/fhm.xpr [current_project]
   set_property ip_repo_paths {
+  D:/workspace/vivado/ip_repo/myip_1.0
   D:/workspace/vivado/ip_repo/twutops_1.0
   D:/workspace/vivado/ip_repo/axi_read_item_and_tid_1.0
 } [current_project]
@@ -155,26 +157,6 @@ if {$rc} {
   return -code error $RESULT
 } else {
   end_step route_design
-  unset ACTIVE_STEP 
-}
-
-start_step write_bitstream
-set ACTIVE_STEP write_bitstream
-set rc [catch {
-  create_msg_db write_bitstream.pb
-  set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
-  catch { write_mem_info -force arm_wrapper.mmi }
-  write_bitstream -force arm_wrapper.bit 
-  catch { write_sysdef -hwdef arm_wrapper.hwdef -bitfile arm_wrapper.bit -meminfo arm_wrapper.mmi -file arm_wrapper.sysdef }
-  catch {write_debug_probes -quiet -force arm_wrapper}
-  catch {file copy -force arm_wrapper.ltx debug_nets.ltx}
-  close_msg_db -file write_bitstream.pb
-} RESULT]
-if {$rc} {
-  step_failed write_bitstream
-  return -code error $RESULT
-} else {
-  end_step write_bitstream
   unset ACTIVE_STEP 
 }
 

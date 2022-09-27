@@ -68,6 +68,44 @@ static void DisableIntrSystem(INTC * IntcInstancePtr,
 static void RxIntrHandler(void *Callback);
 static void TxIntrHandler(void *Callback);
 
+static void RxIntrHandler(void *Callback){
+	u32 IrqStatus;
+	int TimeOut;
+	XAxiDma *AxiDmaInst = (XAxiDma *)Callback;
+
+	/* Read pending interrupts */
+	IrqStatus = XAxiDma_IntrGetIrq(AxiDmaInst, XAXIDMA_DEVICE_TO_DMA);
+
+	/* Acknowledge pending interrupts */
+	XAxiDma_IntrAckIrq(AxiDmaInst, IrqStatus, XAXIDMA_DEVICE_TO_DMA);
+	if (!(IrqStatus & XAXIDMA_IRQ_ALL_MASK)) {
+		return;
+	}
+
+	if ((IrqStatus & XAXIDMA_IRQ_ERROR_MASK)) {
+		Error = 1;
+		/* Reset could fail and hang
+		 * NEED a way to handle this or do not call it??
+		 */
+		XAxiDma_Reset(AxiDmaInst);
+		TimeOut = RESET_TIMEOUT_COUNTER;
+		while (TimeOut) {
+			if(XAxiDma_ResetIsDone(AxiDmaInst)) {
+				break;
+			}
+			TimeOut -= 1;
+		}
+		return;
+	}
+
+	/*
+	 * If completion interrupt is asserted, then set RxDone flag
+	 */
+	if ((IrqStatus & XAXIDMA_IRQ_IOC_MASK)) {
+		RxDone = 1;
+	}
+}
+
 static void TxIntrHandler(void *Callback){
 
 	u32 IrqStatus;

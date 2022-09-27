@@ -1,10 +1,10 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-// Date        : Tue Sep 20 11:57:27 2022
+// Date        : Tue Sep 20 11:57:26 2022
 // Host        : DESKTOP-KLPNQ97 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               D:/workspace/vivado/fhm/fhm.srcs/sources_1/bd/arm/ip/arm_processing_system7_0_0/arm_processing_system7_0_0_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top arm_processing_system7_0_0 -prefix
+//               arm_processing_system7_0_0_ arm_processing_system7_0_0_stub.v
 // Design      : arm_processing_system7_0_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z100ffg900-2
