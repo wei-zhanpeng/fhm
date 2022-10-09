@@ -28,6 +28,7 @@ extern int TID_now;
 extern int data[100];
 extern int itutinT ;//the number of item and util in T
 extern int transfer_times;
+extern int *receive_buffer;
 
 //send data addr
 #define TX_BUFFER_BASE	0x10000000
@@ -102,6 +103,8 @@ static void RxIntrHandler(void *Callback){
 	 * If completion interrupt is asserted, then set RxDone flag
 	 */
 	if ((IrqStatus & XAXIDMA_IRQ_IOC_MASK)) {
+		XAxiDma_SimpleTransfer(&AxiDma,(UINTPTR) receive_buffer,MAX_PER_TRANSFER, XAXIDMA_DEVICE_TO_DMA);
+
 		RxDone = 1;
 	}
 }

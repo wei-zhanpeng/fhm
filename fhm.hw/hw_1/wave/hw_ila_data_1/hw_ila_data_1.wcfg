@@ -10,65 +10,78 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="4096001fs"></ZoomEndTime>
-      <Cursor1Time time="1267000fs"></Cursor1Time>
+      <ZoomEndTime time="1024001fs"></ZoomEndTime>
+      <Cursor1Time time="512000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="367"></NameColumnWidth>
-      <ValueColumnWidth column_width="118"></ValueColumnWidth>
+      <NameColumnWidth column_width="373"></NameColumnWidth>
+      <ValueColumnWidth column_width="106"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="7" />
+   <WVObjectSize size="1" />
    <wave_markers>
    </wave_markers>
-   <wvobject fp_name="arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/fifo_full_flag" type="logic">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/fifo_full_flag</obj_property>
-      <obj_property name="ObjectShortName">fifo_full_flag</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject fp_name="arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/fifo_wren" type="logic">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/fifo_wren</obj_property>
-      <obj_property name="ObjectShortName">fifo_wren</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject fp_name="arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/write_pointer" type="array">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/write_pointer[2:0]</obj_property>
-      <obj_property name="ObjectShortName">write_pointer[2:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject fp_name="arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/writes_done" type="logic">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/writes_done</obj_property>
-      <obj_property name="ObjectShortName">writes_done</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject fp_name="u_ila_0_axi_dma_0_M_AXIS_MM2S_TDATA" type="array">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">u_ila_0_axi_dma_0_M_AXIS_MM2S_TDATA[31:0]</obj_property>
-      <obj_property name="ObjectShortName">u_ila_0_axi_dma_0_M_AXIS_MM2S_TDATA[31:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject fp_name="u_ila_0_mst_exec_state" type="logic">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">u_ila_0_mst_exec_state</obj_property>
-      <obj_property name="ObjectShortName">u_ila_0_mst_exec_state</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject fp_name="u_ila_0_s_axis_itemandtid_tvalid" type="logic">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">u_ila_0_s_axis_itemandtid_tvalid</obj_property>
-      <obj_property name="ObjectShortName">u_ila_0_s_axis_itemandtid_tvalid</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   <wvobject fp_name="group26" type="group">
+      <obj_property name="label">slot_0 : axi_read_item_and_tid_0_m_axis_itemtops : Interface</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Detail_Data">Interface_(i1:s0)_(axi_read_item_and_tid_0_m_axis_itemtops)_tooltip</obj_property>
+      <obj_property name="Render_Data">Interface_(i1:s0)_(axi_read_item_and_tid_0_m_axis_itemtops)</obj_property>
+      <obj_property name="EnumTransactionColorTable">0=blank</obj_property>
+      <obj_property name="CustomSignalColor">OliveDrab</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="group27" type="group">
+         <obj_property name="label">slot_0 : axi_read_item_and_tid_0_m_axis_itemtops : T Channel</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="Detail_Data">T_Channel_(i1:s0)_(axi_read_item_and_tid_0_m_axis_itemtops)_tooltip</obj_property>
+         <obj_property name="Render_Data">T_Channel_(i1:s0)_(axi_read_item_and_tid_0_m_axis_itemtops)</obj_property>
+         <obj_property name="EnumTransactionColorTable">0=blank</obj_property>
+         <obj_property name="CustomSignalColor">Purple</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject fp_name="arm_i/system_ila_0/inst/net_slot_0_axis_tvalid" type="logic">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="ElementShortName">arm_i/system_ila_0/inst/net_slot_0_axis_tvalid</obj_property>
+            <obj_property name="ObjectShortName">net_slot_0_axis_tvalid</obj_property>
+            <obj_property name="label">slot_0 : axi_read_item_and_tid_0_m_axis_itemtops : TVALID</obj_property>
+            <obj_property name="LABELRADIX">true</obj_property>
+            <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+         </wvobject>
+         <wvobject fp_name="arm_i/system_ila_0/inst/net_slot_0_axis_tready" type="logic">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="ElementShortName">arm_i/system_ila_0/inst/net_slot_0_axis_tready</obj_property>
+            <obj_property name="ObjectShortName">net_slot_0_axis_tready</obj_property>
+            <obj_property name="label">slot_0 : axi_read_item_and_tid_0_m_axis_itemtops : TREADY</obj_property>
+            <obj_property name="LABELRADIX">true</obj_property>
+            <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+         </wvobject>
+         <wvobject fp_name="arm_i/system_ila_0/inst/net_slot_0_axis_tlast" type="logic">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="ElementShortName">arm_i/system_ila_0/inst/net_slot_0_axis_tlast</obj_property>
+            <obj_property name="ObjectShortName">net_slot_0_axis_tlast</obj_property>
+            <obj_property name="label">slot_0 : axi_read_item_and_tid_0_m_axis_itemtops : TLAST</obj_property>
+            <obj_property name="LABELRADIX">true</obj_property>
+            <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+         </wvobject>
+         <wvobject fp_name="arm_i/system_ila_0/inst/net_slot_0_axis_tdata" type="array">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="ElementShortName">arm_i/system_ila_0/inst/net_slot_0_axis_tdata[31:0]</obj_property>
+            <obj_property name="ObjectShortName">net_slot_0_axis_tdata[31:0]</obj_property>
+            <obj_property name="label">slot_0 : axi_read_item_and_tid_0_m_axis_itemtops : TDATA</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+            <obj_property name="LABELRADIX">true</obj_property>
+            <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+         </wvobject>
+         <wvobject fp_name="arm_i/system_ila_0/inst/net_slot_0_axis_tkeep" type="array">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="ElementShortName">arm_i/system_ila_0/inst/net_slot_0_axis_tkeep[3:0]</obj_property>
+            <obj_property name="ObjectShortName">net_slot_0_axis_tkeep[3:0]</obj_property>
+            <obj_property name="label">slot_0 : axi_read_item_and_tid_0_m_axis_itemtops : TKEEP</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+            <obj_property name="LABELRADIX">true</obj_property>
+            <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+         </wvobject>
+      </wvobject>
    </wvobject>
 </wave_config>

@@ -41,13 +41,13 @@
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="9"/>
-    <Option Name="WTModelSimExportSim" Val="9"/>
-    <Option Name="WTQuestaExportSim" Val="9"/>
-    <Option Name="WTIesExportSim" Val="9"/>
-    <Option Name="WTVcsExportSim" Val="9"/>
-    <Option Name="WTRivieraExportSim" Val="9"/>
-    <Option Name="WTActivehdlExportSim" Val="9"/>
+    <Option Name="WTXSimExportSim" Val="17"/>
+    <Option Name="WTModelSimExportSim" Val="17"/>
+    <Option Name="WTQuestaExportSim" Val="17"/>
+    <Option Name="WTIesExportSim" Val="17"/>
+    <Option Name="WTVcsExportSim" Val="17"/>
+    <Option Name="WTRivieraExportSim" Val="17"/>
+    <Option Name="WTActivehdlExportSim" Val="17"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -70,11 +70,11 @@
         <CompFileExtendedInfo CompFileName="arm.bd" FileRelPathName="ip/arm_axi_read_item_and_tid_0_0/arm_axi_read_item_and_tid_0_0.xci">
           <Proxy FileSetName="arm_axi_read_item_and_tid_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="arm.bd" FileRelPathName="ip/arm_myip_0_0/arm_myip_0_0.xci">
-          <Proxy FileSetName="arm_myip_0_0"/>
-        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="arm.bd" FileRelPathName="ip/arm_axi_dma_0_0/arm_axi_dma_0_0.xci">
           <Proxy FileSetName="arm_axi_dma_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="arm.bd" FileRelPathName="ip/arm_system_ila_0_0/arm_system_ila_0_0.xci">
+          <Proxy FileSetName="arm_system_ila_0_0"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/bd/arm/hdl/arm_wrapper.v">
@@ -85,6 +85,38 @@
         </FileInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/new/twucal.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/StateControl.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/ULBuild.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/EUCSBuild.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/DistributedRam.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -141,9 +173,9 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="arm_myip_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/arm_myip_0_0">
+    <FileSet Name="arm_system_ila_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/arm_system_ila_0_0">
       <Config>
-        <Option Name="TopModule" Val="arm_myip_0_0"/>
+        <Option Name="TopModule" Val="arm_system_ila_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -200,9 +232,11 @@
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2017"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="arm_myip_0_0_synth_1" Type="Ft3:Synth" SrcSet="arm_myip_0_0" Part="xc7z100ffg900-2" ConstrsSet="arm_myip_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/arm_myip_0_0_synth_1" IncludeInArchive="true">
+    <Run Id="arm_system_ila_0_0_synth_1" Type="Ft3:Synth" SrcSet="arm_system_ila_0_0" Part="xc7z100ffg900-2" ConstrsSet="arm_system_ila_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/arm_system_ila_0_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -299,9 +333,11 @@
       <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2017"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="arm_myip_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z100ffg900-2" ConstrsSet="arm_myip_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="arm_myip_0_0_synth_1" IncludeInArchive="false">
+    <Run Id="arm_system_ila_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z100ffg900-2" ConstrsSet="arm_system_ila_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="arm_system_ila_0_0_synth_1" IncludeInArchive="false">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="timing_violation_opt" Flow="Vivado Implementation 2017"/>
+        <StratHandle Name="timing_violation_opt" Flow="Vivado Implementation 2017">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design">
           <Option Id="Directive">6</Option>

@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-| Date         : Mon Sep 26 21:46:35 2022
+| Date         : Wed Sep 28 22:04:40 2022
 | Host         : DESKTOP-KLPNQ97 running 64-bit major release  (build 9200)
 | Command      : report_utilization -file arm_wrapper_utilization_synth.rpt -pb arm_wrapper_utilization_synth.pb
 | Design       : arm_wrapper
@@ -164,10 +164,10 @@ Table of Contents
 |            Ref Name           | Used |
 +-------------------------------+------+
 | arm_xlconcat_0_0              |    1 |
+| arm_system_ila_0_0            |    1 |
 | arm_smartconnect_0_0          |    1 |
 | arm_rst_ps7_0_100M_0          |    1 |
 | arm_processing_system7_0_0    |    1 |
-| arm_myip_0_0                  |    1 |
 | arm_axi_read_item_and_tid_0_0 |    1 |
 | arm_axi_dma_0_0               |    1 |
 | arm_auto_pc_0                 |    1 |

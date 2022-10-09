@@ -15,6 +15,7 @@ int TID_now = 0;
 int Status;
 int Index;
 int transfer_times;
+int *receive_buffer;
 //fhm
 int tidn = 0xffff;
 int data[100];

@@ -1,7 +1,7 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-// Date        : Mon Sep 26 21:35:26 2022
+// Date        : Wed Sep 28 21:40:43 2022
 // Host        : DESKTOP-KLPNQ97 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
 //               D:/workspace/vivado/fhm/fhm.srcs/sources_1/bd/arm/ip/arm_axi_read_item_and_tid_0_0/arm_axi_read_item_and_tid_0_0_stub.v
@@ -14,10 +14,16 @@
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
 (* X_CORE_INFO = "axi_read_item_and_tid_v1_0,Vivado 2017.4" *)
-module arm_axi_read_item_and_tid_0_0(s_axis_itemandtid_tdata, 
-  s_axis_itemandtid_tstrb, s_axis_itemandtid_tlast, s_axis_itemandtid_tvalid, 
-  s_axis_itemandtid_tready, s_axis_itemandtid_aclk, s_axis_itemandtid_aresetn)
-/* synthesis syn_black_box black_box_pad_pin="s_axis_itemandtid_tdata[31:0],s_axis_itemandtid_tstrb[3:0],s_axis_itemandtid_tlast,s_axis_itemandtid_tvalid,s_axis_itemandtid_tready,s_axis_itemandtid_aclk,s_axis_itemandtid_aresetn" */;
+module arm_axi_read_item_and_tid_0_0(dma_ready, item_output_valid, 
+  item_output_last, twu_all, item_keep, s_axis_itemandtid_tdata, s_axis_itemandtid_tstrb, 
+  s_axis_itemandtid_tlast, s_axis_itemandtid_tvalid, s_axis_itemandtid_tready, 
+  s_axis_itemandtid_aclk, s_axis_itemandtid_aresetn)
+/* synthesis syn_black_box black_box_pad_pin="dma_ready,item_output_valid,item_output_last,twu_all[31:0],item_keep[3:0],s_axis_itemandtid_tdata[31:0],s_axis_itemandtid_tstrb[3:0],s_axis_itemandtid_tlast,s_axis_itemandtid_tvalid,s_axis_itemandtid_tready,s_axis_itemandtid_aclk,s_axis_itemandtid_aresetn" */;
+  input dma_ready;
+  output item_output_valid;
+  output item_output_last;
+  output [31:0]twu_all;
+  output [3:0]item_keep;
   input [31:0]s_axis_itemandtid_tdata;
   input [3:0]s_axis_itemandtid_tstrb;
   input s_axis_itemandtid_tlast;

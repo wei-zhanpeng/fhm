@@ -48,13 +48,18 @@
 
 
 // IP VLNV: xilinx.com:user:axi_read_item_and_tid:1.0
-// IP Revision: 5
+// IP Revision: 13
 
 (* X_CORE_INFO = "axi_read_item_and_tid_v1_0,Vivado 2017.4" *)
 (* CHECK_LICENSE_TYPE = "arm_axi_read_item_and_tid_0_0,axi_read_item_and_tid_v1_0,{}" *)
-(* CORE_GENERATION_INFO = "arm_axi_read_item_and_tid_0_0,axi_read_item_and_tid_v1_0,{x_ipProduct=Vivado 2017.4,x_ipVendor=xilinx.com,x_ipLibrary=user,x_ipName=axi_read_item_and_tid,x_ipVersion=1.0,x_ipCoreRevision=5,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_S_AXIS_ITEMANDTID_TDATA_WIDTH=32}" *)
+(* CORE_GENERATION_INFO = "arm_axi_read_item_and_tid_0_0,axi_read_item_and_tid_v1_0,{x_ipProduct=Vivado 2017.4,x_ipVendor=xilinx.com,x_ipLibrary=user,x_ipName=axi_read_item_and_tid,x_ipVersion=1.0,x_ipCoreRevision=13,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DATAWIDTH=32,ITEMNUM=1559,MINUTIL=1000}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module arm_axi_read_item_and_tid_0_0 (
+  dma_ready,
+  item_output_valid,
+  item_output_last,
+  twu_all,
+  item_keep,
   s_axis_itemandtid_tdata,
   s_axis_itemandtid_tstrb,
   s_axis_itemandtid_tlast,
@@ -64,6 +69,17 @@ module arm_axi_read_item_and_tid_0_0 (
   s_axis_itemandtid_aresetn
 );
 
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis_itemtops TREADY" *)
+input wire dma_ready;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis_itemtops TVALID" *)
+output wire item_output_valid;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis_itemtops TLAST" *)
+output wire item_output_last;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis_itemtops TDATA" *)
+output wire [31 : 0] twu_all;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME m_axis_itemtops, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.000, LAYERED_METADATA undef" *)
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis_itemtops TKEEP" *)
+output wire [3 : 0] item_keep;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_ITEMANDTID TDATA" *)
 input wire [31 : 0] s_axis_itemandtid_tdata;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_ITEMANDTID TSTRB" *)
@@ -83,8 +99,15 @@ input wire s_axis_itemandtid_aclk;
 input wire s_axis_itemandtid_aresetn;
 
   axi_read_item_and_tid_v1_0 #(
-    .C_S_AXIS_ITEMANDTID_TDATA_WIDTH(32)  // AXI4Stream sink: Data Width
+    .DATAWIDTH(32),
+    .ITEMNUM(1559),
+    .MINUTIL(1000)
   ) inst (
+    .dma_ready(dma_ready),
+    .item_output_valid(item_output_valid),
+    .item_output_last(item_output_last),
+    .twu_all(twu_all),
+    .item_keep(item_keep),
     .s_axis_itemandtid_tdata(s_axis_itemandtid_tdata),
     .s_axis_itemandtid_tstrb(s_axis_itemandtid_tstrb),
     .s_axis_itemandtid_tlast(s_axis_itemandtid_tlast),

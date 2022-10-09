@@ -1,7 +1,7 @@
 //Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-//Date        : Mon Sep 26 21:34:37 2022
+//Date        : Wed Sep 28 21:39:10 2022
 //Host        : DESKTOP-KLPNQ97 running 64-bit major release  (build 9200)
 //Command     : generate_target arm.bd
 //Design      : arm
@@ -95,10 +95,11 @@ module arm
   wire axi_dma_0_M_AXI_S2MM_WVALID;
   wire axi_dma_0_mm2s_introut;
   wire axi_dma_0_s2mm_introut;
-  wire [31:0]myip_0_M00_AXIS_TDATA;
-  wire myip_0_M00_AXIS_TLAST;
-  wire myip_0_M00_AXIS_TREADY;
-  wire myip_0_M00_AXIS_TVALID;
+  (* CONN_BUS_INFO = "axi_read_item_and_tid_0_m_axis_itemtops xilinx.com:interface:axis:1.0 None TDATA" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire [31:0]axi_read_item_and_tid_0_m_axis_itemtops_TDATA;
+  (* CONN_BUS_INFO = "axi_read_item_and_tid_0_m_axis_itemtops xilinx.com:interface:axis:1.0 None TKEEP" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire [3:0]axi_read_item_and_tid_0_m_axis_itemtops_TKEEP;
+  (* CONN_BUS_INFO = "axi_read_item_and_tid_0_m_axis_itemtops xilinx.com:interface:axis:1.0 None TLAST" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire axi_read_item_and_tid_0_m_axis_itemtops_TLAST;
+  (* CONN_BUS_INFO = "axi_read_item_and_tid_0_m_axis_itemtops xilinx.com:interface:axis:1.0 None TREADY" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire axi_read_item_and_tid_0_m_axis_itemtops_TREADY;
+  (* CONN_BUS_INFO = "axi_read_item_and_tid_0_m_axis_itemtops xilinx.com:interface:axis:1.0 None TVALID" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire axi_read_item_and_tid_0_m_axis_itemtops_TVALID;
   wire [14:0]processing_system7_0_DDR_ADDR;
   wire [2:0]processing_system7_0_DDR_BA;
   wire processing_system7_0_DDR_CAS_N;
@@ -275,26 +276,24 @@ module arm
         .s_axi_lite_wdata(ps7_0_axi_periph_M00_AXI_WDATA),
         .s_axi_lite_wready(ps7_0_axi_periph_M00_AXI_WREADY),
         .s_axi_lite_wvalid(ps7_0_axi_periph_M00_AXI_WVALID),
-        .s_axis_s2mm_tdata(myip_0_M00_AXIS_TDATA),
-        .s_axis_s2mm_tkeep({1'b1,1'b1,1'b1,1'b1}),
-        .s_axis_s2mm_tlast(myip_0_M00_AXIS_TLAST),
-        .s_axis_s2mm_tready(myip_0_M00_AXIS_TREADY),
-        .s_axis_s2mm_tvalid(myip_0_M00_AXIS_TVALID));
+        .s_axis_s2mm_tdata(axi_read_item_and_tid_0_m_axis_itemtops_TDATA),
+        .s_axis_s2mm_tkeep(axi_read_item_and_tid_0_m_axis_itemtops_TKEEP),
+        .s_axis_s2mm_tlast(axi_read_item_and_tid_0_m_axis_itemtops_TLAST),
+        .s_axis_s2mm_tready(axi_read_item_and_tid_0_m_axis_itemtops_TREADY),
+        .s_axis_s2mm_tvalid(axi_read_item_and_tid_0_m_axis_itemtops_TVALID));
   arm_axi_read_item_and_tid_0_0 axi_read_item_and_tid_0
-       (.s_axis_itemandtid_aclk(processing_system7_0_FCLK_CLK0),
+       (.dma_ready(axi_read_item_and_tid_0_m_axis_itemtops_TREADY),
+        .item_keep(axi_read_item_and_tid_0_m_axis_itemtops_TKEEP),
+        .item_output_last(axi_read_item_and_tid_0_m_axis_itemtops_TLAST),
+        .item_output_valid(axi_read_item_and_tid_0_m_axis_itemtops_TVALID),
+        .s_axis_itemandtid_aclk(processing_system7_0_FCLK_CLK0),
         .s_axis_itemandtid_aresetn(rst_ps7_0_100M_peripheral_aresetn),
         .s_axis_itemandtid_tdata(axi_dma_0_M_AXIS_MM2S_TDATA),
         .s_axis_itemandtid_tlast(axi_dma_0_M_AXIS_MM2S_TLAST),
         .s_axis_itemandtid_tready(axi_dma_0_M_AXIS_MM2S_TREADY),
         .s_axis_itemandtid_tstrb({1'b1,1'b1,1'b1,1'b1}),
-        .s_axis_itemandtid_tvalid(axi_dma_0_M_AXIS_MM2S_TVALID));
-  arm_myip_0_0 myip_0
-       (.m00_axis_aclk(processing_system7_0_FCLK_CLK0),
-        .m00_axis_aresetn(rst_ps7_0_100M_peripheral_aresetn),
-        .m00_axis_tdata(myip_0_M00_AXIS_TDATA),
-        .m00_axis_tlast(myip_0_M00_AXIS_TLAST),
-        .m00_axis_tready(myip_0_M00_AXIS_TREADY),
-        .m00_axis_tvalid(myip_0_M00_AXIS_TVALID));
+        .s_axis_itemandtid_tvalid(axi_dma_0_M_AXIS_MM2S_TVALID),
+        .twu_all(axi_read_item_and_tid_0_m_axis_itemtops_TDATA));
   arm_processing_system7_0_0 processing_system7_0
        (.DDR_Addr(DDR_0_addr[14:0]),
         .DDR_BankAddr(DDR_0_ba[2:0]),
@@ -539,6 +538,14 @@ module arm
         .S01_AXI_wvalid(axi_dma_0_M_AXI_S2MM_WVALID),
         .aclk(processing_system7_0_FCLK_CLK0),
         .aresetn(rst_ps7_0_100M_interconnect_aresetn));
+  arm_system_ila_0_0 system_ila_0
+       (.SLOT_0_AXIS_tdata(axi_read_item_and_tid_0_m_axis_itemtops_TDATA),
+        .SLOT_0_AXIS_tkeep(axi_read_item_and_tid_0_m_axis_itemtops_TKEEP),
+        .SLOT_0_AXIS_tlast(axi_read_item_and_tid_0_m_axis_itemtops_TLAST),
+        .SLOT_0_AXIS_tready(axi_read_item_and_tid_0_m_axis_itemtops_TREADY),
+        .SLOT_0_AXIS_tvalid(axi_read_item_and_tid_0_m_axis_itemtops_TVALID),
+        .clk(processing_system7_0_FCLK_CLK0),
+        .resetn(rst_ps7_0_100M_peripheral_aresetn));
   arm_xlconcat_0_0 xlconcat_0
        (.In0(axi_dma_0_mm2s_introut),
         .In1(axi_dma_0_s2mm_introut),
