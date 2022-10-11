@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="D:/workspace/vivado/fhm/fhm.hw/hw_1/wave/hw_ila_data_2/hw_ila_data_2.wdb" id="1">
+         <top_modules>
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="9260fs"></ZoomEndTime>
+      <Cursor1Time time="2054000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="302"></NameColumnWidth>
+      <ValueColumnWidth column_width="118"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="11" />
+   <wvobject fp_name="u_ila_0_s_axis_itemandtid_tvalid" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">u_ila_0_s_axis_itemandtid_tvalid</obj_property>
+      <obj_property name="ObjectShortName">u_ila_0_s_axis_itemandtid_tvalid</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="u_ila_0_mst_exec_state" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">u_ila_0_mst_exec_state</obj_property>
+      <obj_property name="ObjectShortName">u_ila_0_mst_exec_state</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/writes_done" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/writes_done</obj_property>
+      <obj_property name="ObjectShortName">writes_done</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/write_pointer" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/write_pointer[1:0]</obj_property>
+      <obj_property name="ObjectShortName">write_pointer[1:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/fifodata" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/fifodata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">fifodata[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/fifo_wren" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/fifo_wren</obj_property>
+      <obj_property name="ObjectShortName">fifo_wren</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/fifo_full_flag" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/fifo_full_flag</obj_property>
+      <obj_property name="ObjectShortName">fifo_full_flag</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="arm_i/axi_dma_0_M_AXIS_MM2S_TDATA" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">arm_i/axi_dma_0_M_AXIS_MM2S_TDATA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">axi_dma_0_M_AXIS_MM2S_TDATA[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/item_now_0" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/item_now_0[15:0]</obj_property>
+      <obj_property name="ObjectShortName">item_now_0[15:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/nlast" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/nlast[3:0]</obj_property>
+      <obj_property name="ObjectShortName">nlast[3:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/tid_1" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">arm_i/axi_read_item_and_tid_0/inst/axi_read_item_and_tid_v1_0_S_AXIS_ITEMANDTID_inst/tid_1[15:0]</obj_property>
+      <obj_property name="ObjectShortName">tid_1[15:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+</wave_config>
