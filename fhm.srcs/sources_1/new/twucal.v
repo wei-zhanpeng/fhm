@@ -22,7 +22,7 @@ module twucal
     output reg [DATAWIDTH/2-1:0] tu,
     output [DATAWIDTH/2-1:0] item,
     output [31:0] twuout,
-    
+    //dma to ps
     input  dma_ready,
     output reg item_valid,
     output reg item_last,
